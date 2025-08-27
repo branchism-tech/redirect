@@ -1,0 +1,30 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>Redirecting...</title>
+<style>
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding:24px;text-align:center}
+  .btn{display:inline-block;font-size:18px;padding:14px 22px;border-radius:12px;text-decoration:none;border:1px solid #ccc}
+</style>
+<script>
+  // ★ここだけ書き換える：現在のオファー先URL
+  var DEST = "https://apps.apple.com/redeem?ctx=offercodes&id=6745385262&code=CODE";
+
+  // クエリ引き継ぎ（?src=... など）
+  var qs = location.search.slice(1);
+  var finalUrl = qs ? (DEST + (DEST.includes("?") ? "&" : "?") + qs) : DEST;
+
+  // 自動遷移（in-app対策も併用）
+  try { window.top.location.href = finalUrl; } catch(e){}
+  setTimeout(function(){ try { window.top.location.replace(finalUrl); } catch(e){} }, 50);
+  setTimeout(function(){ try { window.location.href = finalUrl; } catch(e){} }, 120);
+</script>
+<p>自動で移動しない場合は、下のボタンをタップしてください。</p>
+<p><a class="btn" href="" id="go" target="_top" rel="noopener">移動する</a></p>
+<script>
+  document.getElementById('go').href = finalUrl;
+</script>
